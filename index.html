@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://thdmoyhruccksftzmxhx.supabase.co; media-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#13406C">
+<title>Sêneca Escuta</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icone-192.png">
+<link rel="apple-touch-icon" href="icone-192.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<section id="tela-parear" class="tela" hidden>
+  <header class="topo"><h1>Sêneca Escuta</h1></header>
+  <main class="miolo">
+    <h2>Parear este navegador</h2>
+    <p>Digite o código de 8 letras e números que o Túlio gerou. O código vale 30 minutos e só funciona uma vez.</p>
+    <form id="form-parear" autocomplete="off">
+      <label for="codigo">Código de pareamento</label>
+      <input id="codigo" type="text" inputmode="text" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="12" placeholder="ABCD2345">
+      <button id="parear-botao" class="botao" type="submit">Parear</button>
+    </form>
+    <p id="parear-msg" class="msg" role="status"></p>
+  </main>
+</section>
+
+<section id="tela-app" class="tela" hidden>
+  <header class="topo">
+    <h1>Sêneca Escuta</h1>
+    <button id="menu-botao" class="botao-menu" type="button" aria-label="Abrir menu">Menu</button>
+  </header>
+  <div id="menu" class="menu" hidden>
+    <button id="menu-desparear" class="botao secundario" type="button">Desparear este navegador</button>
+  </div>
+
+  <main class="abas">
+    <section id="aba-conversar" class="aba" hidden>
+      <div id="chat-lista" class="chat-lista" aria-live="polite"></div>
+      <p id="chat-aviso" class="msg erro" role="alert" hidden></p>
+      <label class="ouvir"><input id="chat-ouvir" type="checkbox"> Ouvir respostas em voz alta</label>
+      <form id="chat-form" class="chat-form" autocomplete="off">
+        <textarea id="chat-texto" rows="2" maxlength="2000" placeholder="Pergunte sobre o que foi gravado" aria-label="Pergunta"></textarea>
+        <div class="linha-botoes">
+          <button id="chat-voz" class="botao secundario" type="button">Ditar</button>
+          <button id="chat-enviar" class="botao" type="submit">Enviar</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="aba-gravar" class="aba" hidden>
+      <div class="gravar-centro">
+        <p id="grav-estado" class="estado">Parado</p>
+        <p id="grav-tempo" class="tempo">00:00</p>
+        <button id="grav-botao" class="botao grande" type="button">Gravar</button>
+        <p class="dica">Mantenha este app aberto e a tela acesa. Com a tela apagada o Chrome pode parar a gravação.</p>
+        <p id="grav-aviso" class="msg erro" role="alert" hidden></p>
+        <p id="grav-segundo-plano" class="msg aviso" role="alert" hidden></p>
+      </div>
+      <dl class="contadores">
+        <div><dt>Enviados</dt><dd id="grav-enviados">0</dd></div>
+        <div><dt>Na fila</dt><dd id="grav-fila">0</dd></div>
+        <div><dt>Fila</dt><dd id="grav-bytes">0 B</dd></div>
+      </dl>
+      <p id="grav-fila-aviso" class="msg aviso" hidden></p>
+    </section>
+
+    <section id="aba-resumos" class="aba" hidden>
+      <p id="res-aviso" class="msg erro" role="alert" hidden></p>
+      <div id="res-lista-vista">
+        <div id="res-lista" class="res-lista"></div>
+      </div>
+      <div id="res-dia-vista" hidden>
+        <button id="res-voltar" class="botao secundario" type="button">Voltar aos dias</button>
+        <h2 id="res-titulo"></h2>
+        <div id="res-corpo" class="md"></div>
+        <button id="res-ver-texto" class="botao secundario" type="button">Ver transcrição</button>
+        <div id="res-texto" class="transcricao" hidden></div>
+        <button id="res-mais-texto" class="botao secundario" type="button" hidden>Carregar mais</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabs" role="tablist">
+    <button id="tab-conversar" class="tab" type="button" role="tab" aria-selected="false">Conversar</button>
+    <button id="tab-gravar" class="tab" type="button" role="tab" aria-selected="false">Gravar</button>
+    <button id="tab-resumos" class="tab" type="button" role="tab" aria-selected="false">Resumos</button>
+  </nav>
+</section>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
